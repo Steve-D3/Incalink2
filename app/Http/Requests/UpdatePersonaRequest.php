@@ -11,7 +11,7 @@ class UpdatePersonaRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,15 @@ class UpdatePersonaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "nombre" => "required|string|max:255",
+            "edad" => "required|integer|min:1|max:120",
+            "sexo" => "required|string|in:Masculino,Femenino",
+            "cedula" => "required|numeric|length:10|unique:personas,cedula",
+            "telefono" => "required|numeric|length:10|unique:personas,telefono",
+            "alergias" => "nullable|string|max:255",
+            "alergias_varias" => "nullable|string|max:255",
+            "observaciones" => "nullable|string|max:255",
+            "grupo_id" => "required|exists:grupos,id",
         ];
     }
 }

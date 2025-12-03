@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Persona;
 use App\Http\Requests\StorePersonaRequest;
 use App\Http\Requests\UpdatePersonaRequest;
-
+use Inertia\Inertia;
 class PersonaController extends Controller
 {
     /**
@@ -13,7 +13,10 @@ class PersonaController extends Controller
      */
     public function index()
     {
-        //
+        $personas = Persona::with('grupos')->get();
+        return Inertia::render('Personas/Index', [
+            'personas' => $personas
+        ]);
     }
 
     /**
@@ -21,7 +24,7 @@ class PersonaController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Personas/Create');
     }
 
     /**
@@ -29,7 +32,9 @@ class PersonaController extends Controller
      */
     public function store(StorePersonaRequest $request)
     {
-        //
+        Persona::create($request->validated());
+        return redirect()->route('personas.index')
+            ->with('success', 'Persona creada exitosamente');
     }
 
     /**
@@ -37,7 +42,9 @@ class PersonaController extends Controller
      */
     public function show(Persona $persona)
     {
-        //
+        return Inertia::render('Personas/Show', [
+            'persona' => $persona
+        ]);
     }
 
     /**
@@ -45,7 +52,9 @@ class PersonaController extends Controller
      */
     public function edit(Persona $persona)
     {
-        //
+        return Inertia::render('Personas/Edit', [
+            'persona' => $persona
+        ]);
     }
 
     /**
@@ -53,7 +62,9 @@ class PersonaController extends Controller
      */
     public function update(UpdatePersonaRequest $request, Persona $persona)
     {
-        //
+        $persona->update($request->validated());
+        return redirect()->route('personas.index')
+            ->with('success', 'Persona actualizada exitosamente');
     }
 
     /**
@@ -61,6 +72,8 @@ class PersonaController extends Controller
      */
     public function destroy(Persona $persona)
     {
-        //
+        $persona->delete();
+        return redirect()->route('personas.index')
+            ->with('success', 'Persona eliminada exitosamente');
     }
 }

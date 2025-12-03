@@ -43,7 +43,7 @@ class GrupoController extends Controller
     public function show(Grupo $grupo)
     {
         return Inertia::render('Grupos/Show', [
-            'grupo' => $grupo->loadCount('personas')
+            'grupo' => $grupo->load('menus')->loadCount('personas')
         ]);
     }
 

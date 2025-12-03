@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Menu;
 use App\Http\Requests\StoreMenuRequest;
 use App\Http\Requests\UpdateMenuRequest;
-
+use Inertia\Inertia;
 class MenuController extends Controller
 {
     /**
@@ -13,7 +13,10 @@ class MenuController extends Controller
      */
     public function index()
     {
-        //
+        $menus = Menu::with('grupos')->get();
+        return Inertia::render('Menus/Index', [
+            'menus' => $menus
+        ]);
     }
 
     /**
@@ -21,7 +24,7 @@ class MenuController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Menus/Create');
     }
 
     /**
@@ -29,7 +32,9 @@ class MenuController extends Controller
      */
     public function store(StoreMenuRequest $request)
     {
-        //
+        Menu::create($request->validated());
+        return redirect()->route('menus.index')
+            ->with('success', 'Menu creado exitosamente');
     }
 
     /**
@@ -37,7 +42,9 @@ class MenuController extends Controller
      */
     public function show(Menu $menu)
     {
-        //
+        return Inertia::render('Menus/Show', [
+            'menu' => $menu
+        ]);
     }
 
     /**
@@ -45,7 +52,9 @@ class MenuController extends Controller
      */
     public function edit(Menu $menu)
     {
-        //
+        return Inertia::render('Menus/Edit', [
+            'menu' => $menu
+        ]);
     }
 
     /**
@@ -53,7 +62,9 @@ class MenuController extends Controller
      */
     public function update(UpdateMenuRequest $request, Menu $menu)
     {
-        //
+        $menu->update($request->validated());
+        return redirect()->route('menus.index')
+            ->with('success', 'Menu actualizado exitosamente');
     }
 
     /**
@@ -61,6 +72,8 @@ class MenuController extends Controller
      */
     public function destroy(Menu $menu)
     {
-        //
+        $menu->delete();
+        return redirect()->route('menus.index')
+            ->with('success', 'Menu eliminado exitosamente');
     }
 }

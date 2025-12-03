@@ -14,6 +14,13 @@ class Menu extends Model
         'nombre',
     ];
 
+    // Ocultos
+    
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     // Relaciones
 
     public function grupos()

@@ -19,7 +19,7 @@ class GrupoFactory extends Factory
     {
         return [
             'nombre' => $this->faker->company(),
-            'menu_id' => Menu::all()->random()?->id ?? Menu::factory(),
+            'menu_id' => Menu::factory(),
             'fecha_de_llegada' => $this->faker->dateTimeBetween('now', '+1 month'),
             'fecha_de_salida' => $this->faker->dateTimeBetween('+1 month', '+2 months'),
         ];
