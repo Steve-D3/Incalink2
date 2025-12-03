@@ -27,4 +27,9 @@ class Grupo extends Model
     {
         return $this->hasMany(Persona::class, 'grupo_id', 'id');
     }
+
+    public function menus()
+    {
+        return $this->belongsTo(Menu::class, 'menu_id', 'id');
+    }
 }

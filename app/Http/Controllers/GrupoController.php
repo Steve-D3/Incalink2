@@ -13,7 +13,7 @@ class GrupoController extends Controller
      */
     public function index()
     {
-        $grupos = Grupo::withCount('personas')->get();
+        $grupos = Grupo::with('menus')->withCount('personas')->get();
         return Inertia::render('Grupos/Index', [
             'grupos' => $grupos
         ]);

@@ -15,6 +15,12 @@ class Menu extends Model
     ];
 
     // Relaciones
+
+    public function grupos()
+    {
+        return $this->hasMany(Grupo::class);
+    }
+
     public function recetas()
     {
         return $this->hasMany(Receta::class);
