@@ -6,15 +6,15 @@ use Laravel\Fortify\Features;
 use App\Http\Controllers\GrupoController;
 
 Route::get('/', function () {
-    return Inertia::render('welcome', [
+    return Inertia::render('Home', [
         'canRegister' => Features::enabled(Features::registration()),
     ]);
 })->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('dashboard', function () {
-        return Inertia::render('dashboard');
-    })->name('dashboard');
+    Route::get('home', function () {
+        return Inertia::render('Home');
+    })->name('home');
 
     Route::resource('grupos', GrupoController::class);
 });
