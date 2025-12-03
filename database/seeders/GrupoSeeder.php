@@ -12,6 +12,8 @@ class GrupoSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        \App\Models\Grupo::factory(10)
+            ->has(\App\Models\Persona::factory()->count(5), 'personas')
+            ->create();
     }
 }

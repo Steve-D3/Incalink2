@@ -14,10 +14,6 @@ class Menu extends Model
         'nombre',
     ];
 
-    protected $casts = [
-        'receta_id' => 'integer',
-    ];
-
     // Relaciones
     public function recetas()
     {

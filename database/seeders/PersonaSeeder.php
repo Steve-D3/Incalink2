@@ -12,6 +12,6 @@ class PersonaSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        // Personas are now created via GrupoSeeder
     }
 }

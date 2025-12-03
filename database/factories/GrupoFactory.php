@@ -17,7 +17,9 @@ class GrupoFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nombre' => $this->faker->company(),
+            'fecha_de_llegada' => $this->faker->dateTimeBetween('now', '+1 month'),
+            'fecha_de_salida' => $this->faker->dateTimeBetween('+1 month', '+2 months'),
         ];
     }
 }

@@ -17,7 +17,8 @@ class MenuFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nombre' => $this->faker->word(),
+            'receta_id' => \App\Models\Receta::factory(),
         ];
     }
 }

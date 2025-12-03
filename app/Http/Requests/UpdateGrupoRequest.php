@@ -11,7 +11,7 @@ class UpdateGrupoRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class UpdateGrupoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nombre' => 'required|string|max:255',
+            'fecha_de_llegada' => 'required|date',
+            'fecha_de_salida' => 'required|date|after_or_equal:fecha_de_llegada',
         ];
     }
 }

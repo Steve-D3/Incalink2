@@ -18,8 +18,8 @@ class Grupo extends Model
 
     protected $casts = [
         'nombre' => 'string',
-        'fecha_de_llegada' => 'date',
-        'fecha_de_salida' => 'date',
+        'fecha_de_llegada' => 'datetime:Y-m-d H:i',
+        'fecha_de_salida' => 'datetime:Y-m-d H:i',
     ];
 
     // Relaciones

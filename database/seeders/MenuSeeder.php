@@ -12,6 +12,6 @@ class MenuSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        \App\Models\Menu::factory(10)->create();
     }
 }
