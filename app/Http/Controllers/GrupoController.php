@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Grupo;
+use App\Models\Menu;
 use App\Http\Requests\StoreGrupoRequest;
 use App\Http\Requests\UpdateGrupoRequest;
 use Inertia\Inertia;
@@ -24,7 +25,9 @@ class GrupoController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Grupos/Create');
+        return Inertia::render('Grupos/Create', [
+            'menus' => Menu::all()
+        ]);
     }
 
     /**
@@ -53,7 +56,8 @@ class GrupoController extends Controller
     public function edit(Grupo $grupo)
     {
         return Inertia::render('Grupos/Edit', [
-            'grupo' => $grupo
+            'grupo' => $grupo->load('menus'),
+            'menus' => Menu::all()
         ]);
     }
 

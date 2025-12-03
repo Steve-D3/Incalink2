@@ -22,10 +22,6 @@ class Grupo extends Model
         'fecha_de_salida' => 'datetime:Y-m-d H:i',
     ];
 
-    protected $hidden = [
-        'menu_id',
-    ];
-
     // Relaciones
     public function personas()
     {

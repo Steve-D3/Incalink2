@@ -8,6 +8,8 @@ interface Props {
 }
 
 export default function GroupForm({ grupo, menus }: Props) {
+    console.log(grupo);
+
     const { data, setData, post, put, processing, errors } = useForm({
         nombre: grupo?.nombre ?? "",
         fecha_de_llegada: grupo?.fecha_de_llegada ?? "",
@@ -63,7 +65,7 @@ export default function GroupForm({ grupo, menus }: Props) {
                     value={data.menu_id ?? ""}
                     onChange={e => setData('menu_id', Number(e.target.value))}
                 >
-                    <option value="">No menu</option>
+                    <option value="">{grupo?.menus?.nombre ?? "No menu"}</option>
                     {menus.map(menu => (
                         <option key={menu.id} value={menu.id}>
                             {menu.nombre}
