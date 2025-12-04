@@ -4,8 +4,9 @@ import { Link } from '@inertiajs/react'
 const Home = () => {
     return (
         <div>
-            <h1>Home</h1>
             <Link href={'grupos'}>Grupos</Link>
+            <h1>Home</h1>
+            <p className="text-red-500">Hello world</p>
         </div>
     )
 }
